@@ -1,4 +1,4 @@
-# Orbbot
+# Orb-bot
 THE Geocentric Orbit Simulator.
 By Peter Vanderhook
 
