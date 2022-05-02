@@ -5,7 +5,7 @@ from src.orbit import Orbit
 import pygame
 from time import ctime, time
 
-class GlowScreen(Screen):
+class OrbScreen(Screen):
     """Example class for a Pong game screen"""
 
     def __init__(self, *args, **kwargs):
