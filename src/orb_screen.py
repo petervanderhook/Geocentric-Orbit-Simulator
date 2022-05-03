@@ -16,7 +16,7 @@ class OrbScreen(Screen):
 
         # Create objects
         scale = 5
-        orb_width = scale
+        orb_width = 2 * scale
         p = 72176400
         j = 1438500000
         self.time = time() - (time() - p)
@@ -27,10 +27,11 @@ class OrbScreen(Screen):
         self.legend_index = ["-1 Year per tick.", "-30 Days per tick", "-7 Days per tick", "-2 days per tick", "-1 day per tick", "-12 hours per tick", "-1 hour per tick", "-30 minutes per tick", "-1 minute per tick", "1 minute per tick", "30 minutes per tick", "1 hour per tick", "12 hours per tick", "24 hours per tick", "2 days per tick", "7 days per tick", "30 days per tick", "1 year per tick"]
         self.index_num = 13
         #vvvvvvvvvvvv 1/1 represents 1 day per tick.
-        time_passing_per_tick = 1/self.speed_index[self.index_num]
+        time_passing_per_tick = 1#/self.speed_index[self.index_num]
         self.orbits = []
         self.orbs = []
         self.line = False
+        self.orbit_path = False
         self.candle = Orbit(16 * scale)
         self.white_orb = Orb((167, 167, 167), 180, orb_width, time_passing_per_tick, self.candle)
         self.center_orb = Orb((255, 255, 255), 0, 8, 0, Orbit(1))
@@ -127,6 +128,10 @@ class OrbScreen(Screen):
             self.line = False
         if pygame.key.get_pressed()[pygame.K_l]:
             self.line = True
+        if pygame.key.get_pressed()[pygame.K_i]:
+            self.orbit_path = False
+        if pygame.key.get_pressed()[pygame.K_k]:
+            self.orbit_path = True
         if pygame.key.get_pressed()[pygame.K_LEFT]:
             if (self.index_num > 0):
                 self.index_num -= 1
@@ -138,7 +143,7 @@ class OrbScreen(Screen):
                 
         # Draws images, buttons, and fonts
         for item in self.orbits:
-            item.update(self.window)
+            item.update(self.window, self.orbit_path)
         self.center_orb.update(self.window)
         for item in self.orbs:
             item.get_pos()

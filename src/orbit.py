@@ -23,13 +23,15 @@ class Orbit():
             return self.parent_orb.pos
         return self.pos
     
-    def draw_self(self, window):
+    def draw_self(self, window, render_trail=False):
         if self.has_parent:
+            if render_trail:
+                pygame.draw.circle(window, (93,93,93), self.pos, self.radius, 1)
             pass
         else:
             pygame.draw.circle(window, (93,93,93), self.pos, self.radius, 1)
             pass
 
-    def update(self, window):
+    def update(self, window, render_trail=False):
         self.pos = self.get_pos()
-        self.draw_self(window)
+        self.draw_self(window, render_trail)
